@@ -1,0 +1,7 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'"><link rel="stylesheet" href="token.css"><title>导入云端令牌</title></head><body>
+<h1>导入云端令牌（desktop）</h1>
+<p>把 desktop 角色令牌粘贴到下面（<kbd>Ctrl+V</kbd>）。内容不会明文显示，只用 Windows 当前用户加密保存在本机。</p>
+<input id="token" type="password" autocomplete="off" spellcheck="false" autofocus aria-label="云端令牌">
+<p id="msg" role="status"></p>
+<div class="row"><button id="cancel" type="button">取消</button><button id="save" type="button" class="primary">验证并保存</button></div>
+<script src="token.js"></script></body></html>

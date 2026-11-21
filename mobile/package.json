@@ -1,0 +1,9 @@
+{
+  "name": "qingjian-mobile-web",
+  "private": true,
+  "type": "module",
+  "description": "Web UI logic tests for 清笺移动版 (no dependencies; Node 22+)",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs"
+  }
+}

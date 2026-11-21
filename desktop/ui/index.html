@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:;"
+    />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <title>桌面采集入口</title>
+  </head>
+  <body>
+    <button
+      id="orb"
+      aria-label="打开采集类型；按住可拖动"
+      title="采集 · 拖动可移动，贴边可收起"
+    >
+      <span>＋</span>
+    </button>
+    <section id="menu" aria-label="采集类型" hidden>
+      <header>
+        <strong>采集</strong
+        ><button id="close" data-action="close-menu" aria-label="收起类型菜单">
+          ×
+        </button>
+      </header>
+      <div class="types">
+        <button data-type="task"><span>□</span>任务</button
+        ><button data-type="issue"><span>?</span>问题</button
+        ><button data-type="idea"><span>◇</span>想法</button
+        ><button data-type="link"><span>↗</span>链接</button
+        ><button data-type="note"><span>≡</span>随手记</button>
+      </div>
+      <div class="actions">
+        <button data-action="collapse-capture">收起采集窗</button
+        ><button id="main" data-action="hide-main">隐藏主窗口</button
+        ><button data-action="hide-orb">隐藏悬浮球</button
+        ><button data-action="quit">完全退出 Obsidian</button>
+      </div>
+      <footer id="recovery"></footer>
+      <p id="error" role="status" hidden></p>
+    </section>
+    <script src="renderer.js"></script>
+  </body>
+</html>

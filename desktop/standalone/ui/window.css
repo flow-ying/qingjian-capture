@@ -1,0 +1,2 @@
+/* Pointer-driven movement uses the native screen position, including mixed-DPI monitors. */
+header{-webkit-app-region:no-drag;cursor:grab;touch-action:none}header:active{cursor:grabbing}.capture{min-height:0}

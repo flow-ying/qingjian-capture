@@ -1,0 +1,43 @@
+[Unit]
+Description=Mobile capture relay queue for Qingjian mobile -> desktop (behind Caddy)
+After=network-online.target
+
+[Service]
+Type=simple
+User=qingjian
+Group=qingjian
+WorkingDirectory=/opt/qingjian-relay
+EnvironmentFile=/etc/qingjian-relay.env
+Environment=MOBILE_CAPTURE_STATE_DIR=/var/lib/qingjian-relay
+Environment=MOBILE_CAPTURE_PORT=8941
+Environment=PYTHONDONTWRITEBYTECODE=1
+StateDirectory=qingjian-relay
+StateDirectoryMode=0700
+ExecStart=/usr/bin/python3 /opt/qingjian-relay/relay_server.py serve
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/qingjian-relay
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+LockPersonality=true
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_UNIX
+IPAddressDeny=any
+IPAddressAllow=127.0.0.1
+MemoryMax=96M
+CPUQuota=20%
+
+[Install]
+WantedBy=multi-user.target

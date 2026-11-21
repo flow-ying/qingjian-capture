@@ -1,0 +1,9 @@
+{
+  "id": "apex-desktop-entry",
+  "name": "Apex Desktop Entry",
+  "version": "0.1.0",
+  "minAppVersion": "1.8.7",
+  "description": "Desktop floating capture entry. Requires an explicitly bound unified capture port.",
+  "author": "Local module",
+  "isDesktopOnly": true
+}

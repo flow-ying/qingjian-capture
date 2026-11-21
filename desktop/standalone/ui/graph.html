@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'none'; img-src 'self' data:"><title>清笺 · 任务图</title><link rel="stylesheet" href="graph.css"></head>
+<body><main>
+ <header>
+  <div class="mode-seg" role="navigation" aria-label="视图切换">
+   <button id="switch-capture" type="button" class="seg-btn">速记</button>
+   <button type="button" class="seg-btn is-active" aria-current="page">任务图</button>
+  </div>
+  <div class="header-spacer"></div>
+  <div class="header-actions">
+   <button id="palette-btn" type="button" class="icon-btn" aria-label="切换配色主题" title="切换配色主题" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1" fill="currentColor"/><circle cx="17.5" cy="10.5" r="1" fill="currentColor"/><circle cx="8.5" cy="7.5" r="1" fill="currentColor"/><circle cx="6.5" cy="12.5" r="1" fill="currentColor"/><path d="M12 2a10 10 0 1 0 10 10c0-1.9-1.5-3-3.2-3h-1.8a2 2 0 0 1-2-2v-.8C15 4.4 13.8 2 12 2Z"/></svg></button>
+   <button id="pin" type="button" class="icon-btn" aria-label="跨应用置顶" aria-pressed="true" title="跨应用置顶"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5M5 17h14l-4-5V5l2-2H7l2 2v7z"/></svg></button>
+   <button id="close" type="button" class="icon-btn" aria-label="收起并记住当前页面" title="收起"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+  </div>
+ </header>
+ <aside id="palette-popover" role="dialog" aria-label="选择配色主题" hidden></aside>
+ <nav>
+  <select id="graphs" aria-label="切换任务图"><option value="">正在读取任务图…</option></select>
+  <span id="count"></span>
+  <div class="zoom-group" aria-label="画布缩放">
+   <button id="out" type="button" aria-label="缩小画布">−</button>
+   <output id="zoom">100%</output>
+   <button id="in" type="button" aria-label="放大画布">＋</button>
+   <button id="fit" type="button">适应</button>
+  </div>
+  <button id="refresh" type="button" title="立即核对任务图">刷新</button>
+ </nav>
+ <div id="quota-bar" hidden><button id="quota-toggle" type="button" aria-expanded="false" title="查看四池算力进度、提前耗尽目标线、未校准缺口与 X 日报提醒"></button><div class="quota-bar-right"><span id="quota-stamp"></span><button id="quota-refresh" type="button" title="刷新四池算力" aria-label="刷新四池算力">↻</button></div></div>
+ <aside id="quota-popover" role="dialog" aria-label="四池算力详情" hidden></aside>
+ <section id="canvas" aria-label="任务图画布，拖动平移，滚轮缩放"><div id="plane"><svg id="wires" aria-label="节点依赖连线"></svg><div id="nodes"></div></div><p id="empty" role="status">正在连接工作台…</p></section>
+ <footer><span id="connection" role="status">连接中</span><span id="notice" role="status"></span></footer>
+</main>
+<aside id="detail" role="dialog" aria-label="节点详情" hidden>
+ <div id="detail-head"><button id="move-detail" type="button" aria-label="移动详情窗，使用方向键" title="拖动，或聚焦后按方向键移动">⠿</button><strong id="node-title"></strong><button id="close-detail" type="button" aria-label="关闭节点详情">×</button></div>
+ <div class="detail-actions"><button id="copy" type="button">复制提示词</button><button id="copy-title" type="button">复制#标题</button><button id="copy-full" type="button">复制完整词</button></div>
+ <div class="detail-content"><div class="detail-meta"><button id="node-status" type="button" disabled></button><span id="node-version"></span></div><div id="human"></div><details id="ai"><summary>AI 执行提示词</summary><pre id="prompt"></pre></details></div>
+</aside><script src="graph-model.js"></script><script src="graph.js"></script></body></html>

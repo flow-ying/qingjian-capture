@@ -1,0 +1,6 @@
+const button=document.querySelector('button');let dragging=false,movePending=false;
+const apply=state=>{if(state.theme)for(const[k,v]of Object.entries(state.theme))if(typeof v==='string')document.documentElement.style.setProperty('--'+k,v);if('digestPending' in state)document.body.dataset.digest=state.digestPending?'pending':'';};
+capture.onState(apply);capture.onOrb(s=>{document.body.dataset.dock=s.dock||'';apply(s);});capture.call('state').then(apply);
+button.addEventListener('pointerdown',e=>{if(e.button!==0)return;e.preventDefault();dragging=true;button.setPointerCapture(e.pointerId);void capture.call('orb-down',{x:e.screenX,y:e.screenY});});
+button.addEventListener('pointermove',e=>{if(!dragging||movePending)return;movePending=true;requestAnimationFrame(()=>{movePending=false;if(dragging)void capture.call('orb-move',{x:e.screenX,y:e.screenY});});});
+button.addEventListener('pointerup',e=>{if(!dragging)return;dragging=false;void capture.call('orb-up',{x:e.screenX,y:e.screenY});});button.addEventListener('pointercancel',()=>{dragging=false;void capture.call('orb-cancel');});button.addEventListener('contextmenu',e=>{e.preventDefault();void capture.call('menu');});button.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();void capture.call('toggle');}});

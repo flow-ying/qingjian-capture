@@ -1,0 +1,28 @@
+/* Copied verbatim from desktop-capture-orb-20260930/standalone/ui/capture.css (Qingjian 0.4.1, 26d61c017370); mobile overrides live in mobile.css. */
+:root{--surface:#121318;--container:#181a22;--text:#f3f4f6;--muted:#8b92a5;--outline:#272b38;--primary:#7c6ff6;--onPrimary:#ffffff;--tint:#232538;color-scheme:dark;font:14px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;color:var(--text);background:var(--surface)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:var(--surface)}
+button,input,textarea,select{font:inherit;color:inherit}
+button{border:0;background:transparent;cursor:pointer;transition:background-color .15s ease,color .15s ease,border-color .15s ease,opacity .15s ease}
+button:disabled{opacity:.5;cursor:wait}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--primary);outline-offset:1px}
+button,input,textarea,select{-webkit-app-region:no-drag}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--muted) 30%,transparent);border-radius:99px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%)}
+.capture{position:relative;display:flex;flex-direction:column;width:100vw;height:100vh;border:1px solid color-mix(in srgb,var(--outline) 85%,var(--text) 6%);background:var(--surface);overflow:hidden}
+header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid color-mix(in srgb,var(--outline) 72%,transparent);background:color-mix(in srgb,var(--container) 55%,var(--surface));user-select:none;flex-shrink:0}
+svg{width:15px;height:15px;flex:none;pointer-events:none}
+.mode-seg{display:inline-flex;align-items:center;padding:2px;border-radius:8px;background:color-mix(in srgb,var(--surface) 78%,#000 10%);border:1px solid color-mix(in srgb,var(--outline) 80%,transparent)}
+.seg-btn{padding:4px 11px;border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);line-height:1.35}
+.seg-btn:hover{color:var(--text)}
+.seg-btn.is-active{background:var(--tint);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.18)}
+.actions{display:flex;align-items:center;gap:3px}
+.icon{width:28px;height:28px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;color:var(--muted)}
+.icon:hover{background:var(--container);color:var(--text)}
+.pin[aria-pressed=true],.palette-toggle[aria-expanded=true]{background:color-mix(in srgb,var(--primary) 16%,transparent);color:var(--primary)}
+.top-pill{display:inline-flex;align-items:center;gap:5px;height:27px;padding:0 9px;border-radius:7px;font-size:12px;color:var(--muted);background:color-mix(in srgb,var(--container) 65%,transparent);border:1px solid color-mix(in srgb,var(--outline) 75%,transparent)}
+.top-pill:hover{color:var(--text);background:var(--container)}
+.top-pill[aria-expanded=true]{background:color-mix(in srgb,var(--primary) 16%,transparent);color:var(--primary);border-color:color-mix(in srgb,var(--primary) 42%,transparent)}
+.count{font-size:11px;font-weight:600;padding:0 4px;border-radius:99px;background:color-mix(in srgb,var(--surface) 70%,transparent);color:inherit}

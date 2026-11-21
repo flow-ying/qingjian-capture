@@ -1,0 +1,14 @@
+# Example Caddy reverse proxy snippet for qingjian-capture relay
+relay.example.com {
+    handle /mobile-capture/v1/* {
+        request_body {
+            max_size 9MiB
+        }
+        uri strip_prefix /mobile-capture/v1
+        reverse_proxy 127.0.0.1:8941
+    }
+
+    handle /mobile-capture* {
+        respond 404
+    }
+}

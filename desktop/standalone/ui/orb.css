@@ -1,0 +1,15 @@
+html,body{padding:0;margin:0;width:56px;height:56px;overflow:hidden;background:transparent}
+button{position:relative;box-sizing:border-box;margin:6px;width:44px;height:44px;border:1px solid color-mix(in srgb,var(--primary,#7c6ff6) 42%,var(--outline,#272b38));border-radius:50%;display:grid;place-items:center;padding:0;background:var(--container,#181a22);color:var(--primary,#7c6ff6);box-shadow:0 6px 18px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.08);cursor:pointer;touch-action:none;user-select:none;transition:transform .16s ease,border-color .16s ease,background-color .16s ease}
+button:hover{border-color:var(--primary,#7c6ff6);background:var(--tint,#232538)}
+button:active{cursor:grabbing;transform:scale(.96)}
+.orb-icon{width:18px;height:18px;pointer-events:none}
+.orb-bar{display:none;width:3px;height:20px;border-radius:99px;background:var(--primary,#7c6ff6);box-shadow:0 0 8px color-mix(in srgb,var(--primary,#7c6ff6) 65%,transparent);pointer-events:none;transition:height .16s ease}
+body[data-dock=left] button,body[data-dock=right] button{margin-top:2px;width:20px;height:52px;background:color-mix(in srgb,var(--container,#181a22) 94%,transparent);box-shadow:0 4px 14px rgba(0,0,0,.32)}
+body[data-dock=left] button{margin-left:0;border-left:0;border-radius:0 11px 11px 0}
+body[data-dock=right] button{margin-left:36px;border-right:0;border-radius:11px 0 0 11px}
+body[data-dock=left] .orb-icon,body[data-dock=right] .orb-icon{display:none}
+body[data-dock=left] .orb-bar,body[data-dock=right] .orb-bar{display:block}
+body[data-dock=left] button:hover .orb-bar,body[data-dock=right] button:hover .orb-bar{height:26px}
+.orb-digest-dot{display:none;position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 1.5px var(--container,#181a22);pointer-events:none}
+body[data-digest=pending] .orb-digest-dot{display:block}
+body[data-dock=left] .orb-digest-dot,body[data-dock=right] .orb-digest-dot{top:4px;right:4px;width:6px;height:6px}

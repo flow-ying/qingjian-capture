@@ -1,0 +1,14 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),esbuild=require('esbuild');
+const root=path.resolve(__dirname,'..'),out=path.join(root,'dist/desktop-capture');
+fs.mkdirSync(out,{recursive:true});
+esbuild.buildSync({entryPoints:[path.join(root,'standalone/main.cjs')],outfile:path.join(out,'main.cjs'),bundle:true,platform:'node',target:'node22',external:['electron']});
+fs.copyFileSync(path.join(root,'standalone/preload.cjs'),path.join(out,'preload.cjs'));
+fs.copyFileSync(path.join(root,'standalone/graph-preload.cjs'),path.join(out,'graph-preload.cjs'));
+fs.copyFileSync(path.join(root,'standalone/token-preload.cjs'),path.join(out,'token-preload.cjs'));
+fs.cpSync(path.join(root,'standalone/ui'),path.join(out,'ui'),{recursive:true});
+fs.writeFileSync(path.join(out,'package.json'),JSON.stringify({name:'obsidian-desktop-capture',productName:'Obsidian Desktop Capture',version:'0.4.3',main:'main.cjs',private:true},null,2));
+const bridge=path.join(root,'dist/desktop-capture-bridge');fs.mkdirSync(bridge,{recursive:true});
+esbuild.buildSync({entryPoints:[path.join(root,'standalone/bridge/main.cjs')],outfile:path.join(bridge,'main.js'),bundle:true,platform:'node',target:'node18',external:['obsidian']});
+fs.copyFileSync(path.join(root,'standalone/bridge/manifest.json'),path.join(bridge,'manifest.json'));
+console.log('Built standalone app and Obsidian bridge.');

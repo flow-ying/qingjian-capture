@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'">
+<link rel="stylesheet" href="capture.css"><link rel="stylesheet" href="qingjian.css"><link rel="stylesheet" href="mobile.css">
+<title>清笺 · 移动速记</title></head><body>
+<div class="scrim" aria-hidden="true"></div>
+<main class="capture" aria-label="清笺速记小窗">
+<header>
+ <div class="mode-seg" aria-label="清笺">
+  <span class="seg-btn is-active brand">清笺 · 速记</span>
+ </div>
+ <div class="actions">
+  <button type="button" class="recent-toggle top-pill" aria-expanded="false" title="最近记录与上传状态"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>最近</span><span class="count">0</span></button>
+  <button type="button" class="palette-toggle icon" aria-label="切换配色主题" title="切换配色主题" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1" fill="currentColor"/><circle cx="17.5" cy="10.5" r="1" fill="currentColor"/><circle cx="8.5" cy="7.5" r="1" fill="currentColor"/><circle cx="6.5" cy="12.5" r="1" fill="currentColor"/><path d="M12 2a10 10 0 1 0 10 10c0-1.9-1.5-3-3.2-3h-1.8a2 2 0 0 1-2-2v-.8C15 4.4 13.8 2 12 2Z"/></svg></button>
+  <button type="button" class="pin icon" aria-label="保存后继续打开" title="保存后继续打开" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5M5 17h14l-4-5V5l2-2H7l2 2v7z"/></svg></button>
+  <button type="button" class="menu icon" aria-label="设置与配对" title="设置与配对" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></svg></button>
+  <button type="button" class="close icon" aria-label="收起并保留草稿" title="收起并保留草稿"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+ </div>
+</header>
+<div class="draft-bar" aria-label="多草稿切换">
+ <button type="button" class="new-draft" title="新建空白草稿"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>新草稿</span></button>
+ <span class="draft-sep" aria-hidden="true"></span>
+ <div class="draft-tabs" role="tablist" aria-label="当前草稿列表"></div>
+</div>
+<aside class="palette-popover" role="dialog" aria-label="选择配色主题" hidden></aside>
+<section class="recent" role="dialog" aria-label="最近记录" hidden></section>
+<section class="settings" role="dialog" aria-label="设置与配对" hidden>
+ <div class="recent-head"><span>设置与配对</span><button type="button" class="recent-close settings-close" aria-label="关闭设置">✕</button></div>
+ <div class="settings-body">
+  <label><span>服务器地址</span><input class="cfg-url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://…/mobile-capture/v1"></label>
+  <label><span>设备 Token（只存本机加密区，不回显）</span><input class="cfg-token" type="password" autocomplete="off" spellcheck="false" placeholder="粘贴 device Token"></label>
+  <label><span>设备标识</span><input class="cfg-device" autocomplete="off" spellcheck="false" placeholder="my-phone / my-tablet"></label>
+  <label class="switch"><input type="checkbox" class="cfg-clip"><span>剪贴板轻提示（仅小窗打开时读取一次）</span></label>
+  <label class="switch"><input type="checkbox" class="cfg-edge"><span>边缘贴边书签条（需悬浮窗权限）</span></label>
+  <div class="settings-actions">
+   <button type="button" class="ghost-chip cfg-test">测试连接</button>
+   <button type="button" class="ghost-chip cfg-sync">立即同步</button>
+   <button type="button" class="save cfg-save">保存设置</button>
+  </div>
+  <small class="cfg-result" role="status"></small>
+  <small class="cfg-tips">呼出方式：桌面图标 / 侧边栏 · 下拉控制中心「清笺」磁贴 · 任意 App「分享 → 清笺」 · 边缘书签条。</small>
+  <small class="cfg-version"></small>
+ </div>
+</section>
+<section class="editor-area">
+ <div class="clip-hint" hidden><button type="button" class="clip-fill"></button><button type="button" class="clip-dismiss" aria-label="忽略剪贴板提示">×</button></div>
+ <textarea class="body" aria-label="记录正文" placeholder="写下此刻的念头，不用急着想分类…"></textarea>
+ <div class="drawer-stack">
+  <div class="attachments" aria-label="附件"></div>
+  <div class="extra">
+   <label class="date-block" hidden><span>任务日期（可选）</span><input class="due" type="date"></label>
+   <label class="tags-block" hidden><span>检索标签（1–3 个）</span><input class="tags" placeholder="例如：学习方法 实验"><span class="tag-chips"></span></label>
+  </div>
+  <div class="source-block" hidden><label><span>来源</span><input class="source" inputmode="url" placeholder="链接、书名或页码"></label></div>
+  <div class="thought-block" hidden><label><span>我的想法</span><textarea class="thought" placeholder="留下它的原因…"></textarea></label></div>
+ </div>
+</section>
+<footer>
+ <div class="footer-tools" aria-label="分类与补充">
+  <select class="type-select chip-select" aria-label="记录类型"><option value="note">[~] 随手记</option><option value="diary">日记</option><option value="task">[!] 任务</option><option value="issue">[?] 问题</option><option value="idea">[I] 想法</option><option value="link">[L] 链接</option></select>
+  <select class="project-select chip-select" aria-label="归属项目" title="可选挂载 #项目/简称"><option value="">#项目</option></select>
+  <button type="button" class="add-source ghost-chip" aria-expanded="false" title="补充出处链接">来源</button>
+  <button type="button" class="add-thought ghost-chip" aria-expanded="false" title="补充个人理解">想法</button>
+  <button type="button" class="add-file ghost-chip" title="从相册添加图片">图片</button>
+  <button type="button" class="copy-ai ghost-chip" title="连同项目标签复制，粘贴给 AI 讨论">复制给AI</button>
+ </div>
+ <div class="footer-right">
+  <button type="button" class="sync-status" aria-label="同步状态；点击立即同步"><span class="sync-dot" aria-hidden="true"></span><span class="sync-text">连接中</span></button>
+  <small class="draft-status sr-only" role="status">空白记录</small>
+  <button type="button" class="save main-save">写入</button>
+ </div>
+</footer>
+<div class="notice" role="status" aria-live="polite"></div>
+</main>
+<script type="module" src="app.js"></script></body></html>
